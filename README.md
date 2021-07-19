@@ -31,80 +31,75 @@ Vue.use(KmDataTable);
 
 ### tableConfig
 ```
-tableConfig: {
-	// 列名称数据
-	columns: [
-	  {prop: 'id', label: 'ID', align: 'center', width: '150px'},
-	  {
-		prop: 'name',
-		label: '姓名',
-	  //   <div>
-	  //   <el-button type="text" onClick={() => this.goView(row.productId)}>
-	  //     {row.name}
-	  //   </el-button>
-	  // </div>
-		formater: (row) => {
-		  return (
-			<span style="color: red">{ row.name }</span>
-		  )
-		}
-	  },
-	  {prop: 'address', label: '地址'},
-	  {prop: 'phone', label: '手机号'},
-	],
-	
-	// 分页相关
-	showPagination: true,
-	pageSizes: [10, 15, 20, 25],
-	layout: 'total, sizes, prev, pager, next, jumper',
-	total: 100,
-	size: 10,
-	// 操作列的宽度
-	btnBoxWidth: '150px',
-	// 操作按钮
-	extraBtn: [
-	  {
-		type: 'danger',
-		text: '删除',
-		atClick: (row) => {
-		  console.log(row)
-		}
-	  }
-	],
-	// url 依赖axios
-	url: 'https://www.fastmock.site/mock/b127e0a9af5cb4d8cc82cf9b7682dced/demo/api/list',
-	
-	// axiosConfig: {} 配置 详见axios的配置
-	
-	// 搜索框form表单 目前支持select 和 input
-	searchForm: [
-	  {
-		el: { placeholder: '请输入设备名称' },
-		id: 'condition',
-		type: 'input',
-		rules: [
-		  { required: true, message: '请输入设备名称', trigger: 'blur' }
-		]
-	  },
-	  {
-		id: 'status',
-		type: 'select',
-		el: { placeholder: '请选择状态' },
-		options: [
-		  {
-			label: '未激活',
-			value: '未激活',
-		  },
-		  {
-			label: '在线',
-			value: '在线',
-		  },
-		  {
-			label: '离线',
-			value: '离线',
-		  },
-		],
-	  },
-	]
-  }
+// form表单选项
+	// 表单列表 支持 input 和 select
+    searchForm: {
+      type: Array,
+      default: () => []
+    },
+	// table自定义按钮 支持自定义事件
+    extraBtn: {
+      type: Array,
+      required: true
+    },
+	// 表单列名称
+    columns: {
+      type: Array,
+      default: () => []
+    },
+	// 分页size 详见element
+    pageSizes: {
+      type: Array,
+      default: () => [10, 15, 20, 25]
+    },
+	// 分页layout 详见element
+    layout: {
+      type: String,
+      default: 'total, sizes, prev, pager, next, jumper'
+    },
+	// 请求地址
+    url: {
+      type: String,
+      default: ''
+    },
+	// 分页大小
+    size: {
+      type: Number,
+      default: 10
+    },
+	// 是否显示分页
+    showPagination: {
+      type: Boolean,
+      default: false
+    },
+	// 操作列宽度
+    btnBoxWidth: {
+      type: String,
+      default: '150px'
+    },
+	// 自定义页数传参字段名
+    pagePath: {
+      type: String,
+      default: 'page'
+    },
+	// 自定义传参分页字段名
+    pageSizePath: {
+      type: String,
+      default: 'size'
+    },
+	// 自定义接收返回total
+    totalPath: {
+      type: String,
+      default: 'payload.total'
+    },
+	// 自定义接收返回data路径
+    dataPath: {
+      type: String,
+      default: 'payload.content'
+    },
+	// 自定义axios参数
+    axiosConfig: {
+      type: Object,
+      default: () => {}
+    }
   ```
